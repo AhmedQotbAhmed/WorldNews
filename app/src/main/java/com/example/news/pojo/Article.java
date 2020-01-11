@@ -6,6 +6,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class Article {
 
+    // بنحط الاينديكس اللي بجيب منها
+    //1.... اللي جي ده كلو اول خطوه
+    // postMan: علشان الجرب بيه ال  الابي اي "api"
+    // في انواع لركوست بتاعتي بجيب داتا او بمسح او بعدل و الحاجات زي كدا
+    // use get
+    // لدااتا بتاعتي كلاسيس باجبها بحاجه اسمها jsonSchema  بيتحول ل PojoClass
+
+
+
+// معلومات
+//  headers or body or params
+
+
     @SerializedName("source")
     @Expose
     private Source source;

@@ -37,26 +37,20 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=  inflater.inflate(R.layout.fragment_home, container, false);
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         recyclerView = view.findViewById(R.id.recycler_home);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         getNews();
-        super.onViewCreated(view, savedInstanceState);
-
+        return view;
     }
+
     // run
 
     private void getNews() {
         NewsApi call = RetrofitClient.getService();
-        call.getNews().enqueue(new Callback<NewsResponse>() {
+        // call function return dataClass
+        call.getNews("eg","science","c4652d58322344a783a6cea9e37e0707").enqueue(new Callback<NewsResponse>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 newsAdapter = new NewsAdapter(response.body().getArticles());

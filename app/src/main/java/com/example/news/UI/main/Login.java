@@ -9,9 +9,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.news.R;
+import com.google.android.material.button.MaterialButton;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private Handler progHandler=new Handler();
@@ -20,13 +22,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private ConstraintLayout myLoginView;
     private ImageButton btn_google, btn_facebook;
     private Button btn_login;
+    private MaterialButton signUp_var;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Toolbar loginTbr =  findViewById(R.id.login_toolbar);
+        loginTbr.setTitle("login");
+        setSupportActionBar(loginTbr);
 
 
-
+        signUp_var= findViewById(R.id.Sign_up_btn);
         myLoginView= findViewById(R.id.loginView);
         myProgress= findViewById(R.id.progress);
         btn_google = findViewById(R.id.icon_google);
@@ -37,6 +43,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btn_google.setOnClickListener(this);
         btn_facebook.setOnClickListener(this);
         btn_login.setOnClickListener(this);
+        signUp_var.setOnClickListener(this);
 
 
 
@@ -82,6 +89,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        }
+        if(v.getId()==R.id.Sign_up_btn){
+            Intent intent = new Intent(this, SignUp.class);
+            startActivity(intent);
+
+
+
         }
 
     }

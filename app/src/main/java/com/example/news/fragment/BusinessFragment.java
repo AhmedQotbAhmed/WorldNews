@@ -1,6 +1,7 @@
 package com.example.news.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class BusinessFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_business);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         getNews();
         return view;
@@ -54,16 +55,24 @@ public class BusinessFragment extends Fragment {
 
     private void getNews() {
         NewsApi call = RetrofitClient.getService();
-        call.getNews().enqueue(new Callback<NewsResponse>() {
+        // call function return dataClass
+        call.getNews("eg",
+                "business",
+                "c4652d58322344a783a6cea9e37e0707")
+                .enqueue(new Callback<NewsResponse>() {
+
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 newsAdapter = new NewsAdapter(response.body().getArticles());
                 recyclerView.setAdapter(newsAdapter);
+                Log.e("suceess",response.body().getArticles().get(0).getDescription());
 
             }
 
             @Override
             public void onFailure(Call<NewsResponse> call, Throwable t) {
+
+                Log.e("error",t.getMessage());
 
             }
         });

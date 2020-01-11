@@ -3,6 +3,7 @@ package com.example.news.UI.main;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.news.R;
@@ -10,6 +11,7 @@ import com.google.android.material.tabs.TabLayout;
 // retrofit
 // how to set data and get data
 //1- create interface
+//  1.1// make a interface
 //2- use it in the main
 //
 // builder like a require
@@ -17,13 +19,16 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
-    NewsAdapter newsAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//toolbar
+        Toolbar mainTbr =  findViewById(R.id.main_toolbar);
+        mainTbr.setTitle("EgyptNews");
+        setSupportActionBar(mainTbr);
 
 
         tabLayout= findViewById(R.id.tabLayout);
@@ -36,9 +41,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        final FragmentAdapter adapter = new FragmentAdapter(this,getSupportFragmentManager(), tabLayout.getTabCount(),newsAdapter);
+        final FragmentAdapter adapter = new FragmentAdapter(this,getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

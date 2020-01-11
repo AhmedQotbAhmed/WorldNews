@@ -6,10 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.main.MainActivity"
-
     >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/login_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        tools:ignore="MissingConstraints"
+         />
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,38 +29,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/progr_img"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/todo" />
     </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="10dp"
+        android:id="@+id/loginView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:id="@+id/loginView"
-        >
-
-        <TextView
-            android:id="@+id/loginText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Login"
-            android:textColor="#000"
-            android:textSize="16sp"
-
-            android:textStyle="bold"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@id/circularImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:padding="10dp"
+        android:visibility="invisible">
 
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/circularImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="32dp"
             android:gravity="center"
             android:src="@drawable/logo"
             app:civ_border_color="#FFFFFF"
@@ -62,9 +52,10 @@
             app:civ_shadow_radius="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loginText"/>
+            tools:layout_editor_absoluteY="95dp"
+            tools:ignore="MissingConstraints" />
 
-<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
 
         <ImageButton
             android:id="@+id/icon_facebook"
@@ -74,7 +65,7 @@
             android:background="#FFF"
             android:src="@drawable/icon_facebook"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.42"
+            app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/circularImage"
             tools:ignore="MissingConstraints" />
@@ -97,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/login_et_style"
             android:drawableStart="@drawable/icon_user"
             android:gravity="center_horizontal"
@@ -123,21 +114,65 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fr_password"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Forgot your password ?"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
+
+
         <Button
             android:id="@+id/Login_Button"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_margin="40dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/buttom_style_login"
+            android:padding="10dp"
             android:text="Login"
-            android:background="@drawable/buttom_style_login"/>
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fr_password" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/dh_account"
+            android:layout_margin="32dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Login_Button"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account?"
+               android:layout_weight="2"
+                tools:ignore="MissingConstraints" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/Sign_up_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:text="Sign Up"
+            android:layout_weight="1"
+            tools:ignore="MissingConstraints" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 

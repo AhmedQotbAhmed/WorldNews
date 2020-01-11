@@ -11,15 +11,14 @@ import com.example.news.fragment.HomeFragment;
 import com.example.news.fragment.SportFragment;
 
 public class FragmentAdapter extends FragmentPagerAdapter {
-    NewsAdapter newsAdapter;
     private Context myContext;
     int totalTabs;
 
-    public FragmentAdapter(Context context, FragmentManager fm, int totalTabs,NewsAdapter newsAdapter) {
+    public FragmentAdapter(Context context, FragmentManager fm, int totalTabs) {
         super(fm);
-        myContext = context;
+        this.myContext = context;
         this.totalTabs = totalTabs;
-        this.newsAdapter=newsAdapter;
+
     }
 
 

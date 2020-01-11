@@ -3,16 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/border">
 
     <ImageView
         android:layout_gravity="center"
         android:id="@+id/imageView"
+        android:bottomRightRadius="20dip"
+        android:bottomLeftRadius="20dip"
+        android:topRightRadius="20dip"
+        android:topLeftRadius="20dip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars[2]" />
-
+<!--run-->
     <TextView
+        android:padding="10dp"
+
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="81dp"
