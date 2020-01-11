@@ -48,7 +48,8 @@ public class SportFragment extends Fragment {
 
     private void getNews() {
         NewsApi call = RetrofitClient.getService();
-        call.getNews().enqueue(new Callback<NewsResponse>() {
+        // call function return dataClass
+        call.getNews("eg","sports","c4652d58322344a783a6cea9e37e0707").enqueue(new Callback<NewsResponse>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 newsAdapter = new NewsAdapter(response.body().getArticles());

@@ -4,6 +4,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
+    //انواع الحاجات اللي بجيب بيها الداتا
+    // retrofit or httpUrlConnection or volley
+
     private static Retrofit retrofit;
     public static NewsApi getService(){
 
@@ -11,7 +14,7 @@ public class RetrofitClient {
         if (retrofit==null){
             retrofit= new Retrofit
                     .Builder()
-                    .baseUrl("https://newsapi.org/")
+                    .baseUrl("https://newsapi.org/") //baseUrl
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
