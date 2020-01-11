@@ -55,6 +55,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
+    // run
 
     private void getNews() {
         NewsApi call = RetrofitClient.getService();
