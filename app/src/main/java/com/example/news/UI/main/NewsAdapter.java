@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.news.R;
-import com.example.news.newsmodel.Article;
+import com.example.news.pojo.Article;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

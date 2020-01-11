@@ -13,7 +13,7 @@ import com.example.news.R;
 import com.example.news.UI.main.NewsAdapter;
 import com.example.news.data.NewsApi;
 import com.example.news.data.RetrofitClient;
-import com.example.news.newsmodel.NewsResponse;
+import com.example.news.pojo.NewsResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

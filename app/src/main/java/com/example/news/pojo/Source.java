@@ -1,5 +1,5 @@
 
-package com.example.news.newsmodel;
+package com.example.news.pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

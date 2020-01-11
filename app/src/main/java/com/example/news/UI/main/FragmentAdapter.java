@@ -6,16 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.news.data.NewsApi;
-import com.example.news.data.RetrofitClient;
 import com.example.news.fragment.BusinessFragment;
 import com.example.news.fragment.HomeFragment;
 import com.example.news.fragment.SportFragment;
-import com.example.news.newsmodel.NewsResponse;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FragmentAdapter extends FragmentPagerAdapter {
     NewsAdapter newsAdapter;

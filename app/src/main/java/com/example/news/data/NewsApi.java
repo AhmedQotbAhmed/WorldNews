@@ -1,6 +1,6 @@
 package com.example.news.data;
 
-import com.example.news.newsmodel.NewsResponse;
+import com.example.news.pojo.NewsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

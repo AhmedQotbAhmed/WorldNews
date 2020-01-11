@@ -3,19 +3,10 @@ package com.example.news.UI.main;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.news.R;
-import com.example.news.data.NewsApi;
-import com.example.news.data.RetrofitClient;
-import com.example.news.newsmodel.NewsResponse;
 import com.google.android.material.tabs.TabLayout;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 // retrofit
 // how to set data and get data
 //1- create interface
