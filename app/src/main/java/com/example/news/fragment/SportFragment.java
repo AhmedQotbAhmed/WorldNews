@@ -12,14 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.news.R;
 import com.example.news.UI.main.NewsAdapter;
 import com.example.news.data.NewsApi;
+import com.example.news.data.RetrofitClient;
+import com.example.news.newsmodel.NewsResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SportFragment extends Fragment {
 
     RecyclerView recyclerView;
     NewsAdapter newsAdapter;
     NewsApi api;
-    public SportFragment( NewsAdapter newsAdapter) {
-       this.newsAdapter=newsAdapter;
+    public SportFragment() {
+
     }
 
     @Override
@@ -28,11 +34,41 @@ public class SportFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_sport, container, false);
-        recyclerView = view.findViewById(R.id.recycler);
+
+        recyclerView = view.findViewById(R.id.recycler_sport);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        getNews();
 
 
-        recyclerView.setAdapter(newsAdapter);
+
         return view;
     }
+
+    private void getNews() {
+        NewsApi call = RetrofitClient.getService();
+        call.getNews().enqueue(new Callback<NewsResponse>() {
+            @Override
+            public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
+                newsAdapter = new NewsAdapter(response.body().getArticles());
+                recyclerView.setAdapter(newsAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<NewsResponse> call, Throwable t) {
+
+            }
+        });
+
+
+
+
+
+
+
+}
+
 
 }

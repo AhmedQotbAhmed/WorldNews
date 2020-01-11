@@ -30,22 +30,22 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     }
 
 
+
     // this is for fragment tabs
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                getNews();
-                HomeFragment homeFragment = new HomeFragment(newsAdapter);
 
+                HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
             case 1:
-                getNews();
-                SportFragment sportFragment = new SportFragment(newsAdapter);
+
+                SportFragment sportFragment = new SportFragment();
                 return sportFragment;
             case 2:
-                getNews();
-                BusinessFragment businessFragment = new BusinessFragment(newsAdapter);
+
+                BusinessFragment businessFragment = new BusinessFragment();
                 return businessFragment;
             default:
                 return null;
@@ -58,22 +58,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     }
 
 
-    private void getNews() {
-        NewsApi call = RetrofitClient.getService();
-        call.getNews().enqueue(new Callback<NewsResponse>() {
-            @Override
-            public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
-                 newsAdapter = new NewsAdapter(response.body().getArticles());
 
-            }
-
-            @Override
-            public void onFailure(Call<NewsResponse> call, Throwable t) {
-
-            }
-        });
-
-    }
 
 
 

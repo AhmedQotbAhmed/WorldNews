@@ -38,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout= findViewById(R.id.tabLayout);
         viewPager=findViewById(R.id.viewPager);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Home"));
+
         tabLayout.addTab(tabLayout.newTab().setText("Sport"));
+        tabLayout.addTab(tabLayout.newTab().setText("Home"));
         tabLayout.addTab(tabLayout.newTab().setText("Business"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        getNews();
+
 
         final FragmentAdapter adapter = new FragmentAdapter(this,getSupportFragmentManager(), tabLayout.getTabCount(),newsAdapter);
         viewPager.setAdapter(adapter);
@@ -70,22 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private void getNews() {
-        NewsApi call = RetrofitClient.getService();
-        call.getNews().enqueue(new Callback<NewsResponse>() {
-            @Override
-            public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
-                newsAdapter = new NewsAdapter(response.body().getArticles());
 
-            }
-
-            @Override
-            public void onFailure(Call<NewsResponse> call, Throwable t) {
-
-            }
-        });
-
-    }
 
 
 }

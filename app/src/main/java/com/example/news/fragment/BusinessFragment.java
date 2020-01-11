@@ -1,6 +1,5 @@
 package com.example.news.fragment;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.news.R;
 import com.example.news.UI.main.NewsAdapter;
+import com.example.news.data.NewsApi;
+import com.example.news.data.RetrofitClient;
+import com.example.news.newsmodel.NewsResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BusinessFragment extends Fragment {
 
     RecyclerView recyclerView;
-    private final NewsAdapter newsAdapter;
+    private  NewsAdapter newsAdapter;
 
-    public BusinessFragment(NewsAdapter newsAdapter) {
-        this.newsAdapter=newsAdapter;
+    public BusinessFragment() {
+
     }
 
     @Override
@@ -29,11 +35,44 @@ public class BusinessFragment extends Fragment {
 
         View view= inflater.inflate(R.layout.fragment_business, container, false);
 
-        recyclerView = view.findViewById(R.id.recycler);
+        recyclerView = view.findViewById(R.id.recycler_business);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setAdapter(newsAdapter);
+        getNews();
         return view;
     }
 
+
+
+
+
+
+
+
+
+
+    private void getNews() {
+        NewsApi call = RetrofitClient.getService();
+        call.getNews().enqueue(new Callback<NewsResponse>() {
+            @Override
+            public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
+                newsAdapter = new NewsAdapter(response.body().getArticles());
+                recyclerView.setAdapter(newsAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<NewsResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+
 }
+
+

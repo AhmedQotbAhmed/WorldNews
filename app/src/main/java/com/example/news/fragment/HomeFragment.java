@@ -5,20 +5,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.news.R;
 import com.example.news.UI.main.NewsAdapter;
+import com.example.news.data.NewsApi;
+import com.example.news.data.RetrofitClient;
+import com.example.news.newsmodel.NewsResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    private final NewsAdapter newsAdapter;
 
-    public HomeFragment(NewsAdapter newsAdapter) {
-        this.newsAdapter=newsAdapter;
+    RecyclerView recyclerView;
+    private NewsAdapter newsAdapter;
+
+
+    public HomeFragment( ) {
+
     }
 
     @Override
@@ -26,9 +37,47 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=  inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerView = view.findViewById(R.id.recycler);
-        recyclerView.setAdapter(newsAdapter);
+
+
+
+
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        recyclerView = view.findViewById(R.id.recycler_home);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        getNews();
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    private void getNews() {
+        NewsApi call = RetrofitClient.getService();
+        call.getNews().enqueue(new Callback<NewsResponse>() {
+            @Override
+            public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
+                newsAdapter = new NewsAdapter(response.body().getArticles());
+                recyclerView.setAdapter(newsAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<NewsResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+
+
+
 
 }
