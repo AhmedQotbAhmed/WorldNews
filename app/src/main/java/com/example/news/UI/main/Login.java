@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +21,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private int count=0;
    private LinearLayout myProgress;
     private ConstraintLayout myLoginView;
-    private ImageButton btn_google, btn_facebook;
+    private ImageView btn_google, btn_facebook;
     private Button btn_login;
+    private Button btn_frgPass;
     private MaterialButton signUp_var;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         loginTbr.setTitle("login");
         setSupportActionBar(loginTbr);
 
-
+        btn_frgPass=findViewById(R.id.fr_password);
         signUp_var= findViewById(R.id.Sign_up_btn);
         myLoginView= findViewById(R.id.loginView);
         myProgress= findViewById(R.id.progress);
@@ -39,7 +41,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btn_facebook = findViewById(R.id.icon_facebook);
         btn_login = findViewById(R.id.Login_Button);
 
-
+        btn_frgPass.setOnClickListener(this);
         btn_google.setOnClickListener(this);
         btn_facebook.setOnClickListener(this);
         btn_login.setOnClickListener(this);
@@ -93,10 +95,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         if(v.getId()==R.id.Sign_up_btn){
             Intent intent = new Intent(this, SignUp.class);
             startActivity(intent);
+        }
 
+            if(v.getId()==R.id.fr_password) {
+                Intent intent = new Intent(this, ForgotPassActivity.class);
+                startActivity(intent);
+            }
 
 
         }
 
-    }
+
 }

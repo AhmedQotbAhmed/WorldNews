@@ -6,12 +6,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_logol"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo"
+
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.main.SignUp"/>
+        <activity android:name=".UI.main.ForgotPassActivity"></activity>
+        <activity android:name=".UI.main.Description" />
+        <activity android:name=".UI.main.SignUp" />
         <activity android:name=".UI.main.MainActivity" />
         <activity android:name=".UI.main.Login">
             <intent-filter>
@@ -20,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

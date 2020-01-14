@@ -27,11 +27,11 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0:
+            case 1:
 
                 HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
-            case 1:
+            case 0:
 
                 SportFragment sportFragment = new SportFragment();
                 return sportFragment;
