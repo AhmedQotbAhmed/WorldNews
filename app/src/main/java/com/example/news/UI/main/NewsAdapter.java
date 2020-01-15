@@ -92,7 +92,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> im
             container=itemView.findViewById(R.id.container);
             textView=itemView.findViewById(R.id.content);
             img=itemView.findViewById(R.id.imageView);
-
+//
         }
 
 
