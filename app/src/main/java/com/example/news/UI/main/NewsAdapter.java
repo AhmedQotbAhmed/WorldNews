@@ -23,8 +23,14 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> implements View.OnClickListener {
     List<Article> list ;
-    Context context;
+    private Context context;
+    private String image ;
+   private String textTitel;
+   private String textDescd;
+    private String textpPublishedAt;
 
+
+//    Constructor
     public NewsAdapter(List<Article> list) {
         this.list=list;
 
@@ -48,12 +54,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> im
 
         // بربط الداتا باليو اي بتاعي هنا
         Article current= list.get(position);
-
+        textTitel=current.getTitle();
+        textDescd=current.getDescription();
+        textpPublishedAt =current.getPublishedAt();
         holder.textView.setText(current.getTitle());
         holder.more.setOnClickListener(this);
         Picasso.get().load(current.getUrlToImage()).into(holder.img);
 
-
+        image=current.getUrlToImage();
 //        Animation
         holder.img.setAnimation(AnimationUtils.loadAnimation(context,R.anim.rc_transitiion_animation));
         holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.content_transition_animation));
@@ -71,6 +79,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> im
         if (v.getId()==R.id.more){
 
             Intent intent = new Intent(context, Description.class);
+            intent.putExtra("title",textTitel);
+            intent.putExtra("desc",textDescd);
+            intent.putExtra("image",image);
+            intent.putExtra("publishedAt", textpPublishedAt);
 
             context.startActivity(intent);
 
