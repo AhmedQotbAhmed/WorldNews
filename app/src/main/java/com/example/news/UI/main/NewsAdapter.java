@@ -56,7 +56,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> im
 
 //        Animation
         holder.img.setAnimation(AnimationUtils.loadAnimation(context,R.anim.rc_transitiion_animation));
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.rc_transitiion_animation));
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.content_transition_animation));
         holder.more.setAnimation(AnimationUtils.loadAnimation(context,R.anim.rc_transitiion_animation));
 
     }
