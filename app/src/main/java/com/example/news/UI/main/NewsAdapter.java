@@ -50,7 +50,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> im
 
     @Override
     public void onBindViewHolder(@NonNull NewsHolder holder, int position) {
-
+//
 
         // بربط الداتا باليو اي بتاعي هنا
         Article current= list.get(position);
