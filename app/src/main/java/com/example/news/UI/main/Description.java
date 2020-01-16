@@ -17,8 +17,8 @@ public class Description extends AppCompatActivity {
     TextView textTitel;
     TextView textPublishedAt;
     TextView textDesc;
-    Intent intent;
-    Article ob;
+    Intent ob;
+
 
     private String image_str ;
     private String textPublishedAt_str;
@@ -39,14 +39,14 @@ public class Description extends AppCompatActivity {
         textDesc=findViewById(R.id.content_dec);
         textTitel=findViewById(R.id.title_dec);
         textPublishedAt =findViewById(R.id.publishedAt_dec);
-        intent=getIntent();
+        ob=getIntent();
 
-        Bundle bundle = intent.getExtras();
-        ob = (Article) bundle.getSerializable("Article");
-        image_str = ob.getUrlToImage();
-        textTitel_str = ob.getTitle();
-        textDescd_str = ob.getDescription();
-        textPublishedAt_str = ob.getPublishedAt();
+
+
+        image_str = ob.getStringExtra("image");
+        textTitel_str = ob.getStringExtra("title");
+        textDescd_str = ob.getStringExtra("des");
+        textPublishedAt_str = ob.getStringExtra("pubAt");
 
         textPublishedAt.setText(textPublishedAt_str);
         textDesc.setText(textDescd_str);

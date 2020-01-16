@@ -4,6 +4,12 @@ package com.example.news.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.io.Serializable;
+
 public class Article {
 
     // بنحط الاينديكس اللي بجيب منها
@@ -107,5 +113,6 @@ public class Article {
     public void setContent(Object content) {
         this.content = content;
     }
+
 
 }

@@ -20,6 +20,7 @@ import com.example.news.R;
 import com.example.news.pojo.Article;
 import com.squareup.picasso.Picasso;
 
+import java.io.Externalizable;
 import java.io.Serializable;
 import java.util.List;
 // PICASSO FOR DISPLAY image
@@ -53,6 +54,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 //
 
         // بربط الداتا باليو اي بتاعي هنا
+
         Article current= list.get(position);
         //saveData to Use it
 
@@ -62,10 +64,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
                 if (v.getId() == R.id.more) {
 
                     Intent intent = new Intent(context, Description.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("Article", (Serializable) list.get(position));
-
-                    intent.putExtras(bundle);
+                    intent.putExtra("title",list.get(position).getTitle()); // implement Externalizable in your class to salve this error
+                    intent.putExtra("des",list.get(position).getDescription());
+                    intent.putExtra("image",list.get(position).getUrlToImage());
+                    intent.putExtra("pubAt",list.get(position).getPublishedAt());
+                    intent.putExtras(intent);
 
 
                     context.startActivity(intent);
