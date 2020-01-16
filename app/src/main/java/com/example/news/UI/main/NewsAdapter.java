@@ -25,7 +25,7 @@ import java.io.Serializable;
 import java.util.List;
 // PICASSO FOR DISPLAY image
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
+    public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     List<Article> list ;
     private Context context;
 
