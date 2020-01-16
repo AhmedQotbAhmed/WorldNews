@@ -2,6 +2,8 @@ package com.example.news.UI.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +20,14 @@ import com.example.news.R;
 import com.example.news.pojo.Article;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
 // PICASSO FOR DISPLAY image
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> implements View.OnClickListener {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     List<Article> list ;
     private Context context;
-    private String image ;
-   private String textTitel;
-   private String textDescd;
-    private String textpPublishedAt;
+
 
 
 //    Constructor
@@ -49,19 +49,37 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> im
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewsHolder holder, final int position) {
 //
 
         // بربط الداتا باليو اي بتاعي هنا
         Article current= list.get(position);
-        textTitel=current.getTitle();
-        textDescd=current.getDescription();
-        textpPublishedAt =current.getPublishedAt();
+        //saveData to Use it
+
+        holder.more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.more) {
+
+                    Intent intent = new Intent(context, Description.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("Article", (Serializable) list.get(position));
+
+                    intent.putExtras(bundle);
+
+
+                    context.startActivity(intent);
+
+                }
+
+            }
+        });
+
+        // setData
         holder.textView.setText(current.getTitle());
-        holder.more.setOnClickListener(this);
+
         Picasso.get().load(current.getUrlToImage()).into(holder.img);
 
-        image=current.getUrlToImage();
 //        Animation
         holder.img.setAnimation(AnimationUtils.loadAnimation(context,R.anim.rc_transitiion_animation));
         holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.content_transition_animation));
@@ -74,20 +92,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> im
         return list.size();
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId()==R.id.more){
-
-            Intent intent = new Intent(context, Description.class);
-            intent.putExtra("title",textTitel);
-            intent.putExtra("desc",textDescd);
-            intent.putExtra("image",image);
-            intent.putExtra("publishedAt", textpPublishedAt);
-
-            context.startActivity(intent);
-
-        }
-    }
 
 
     ///////////////////////////NewsHolder////////////////////////////////////////////////

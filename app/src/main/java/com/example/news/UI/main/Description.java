@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.news.R;
+import com.example.news.pojo.Article;
 import com.squareup.picasso.Picasso;
 
 public class Description extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class Description extends AppCompatActivity {
     TextView textPublishedAt;
     TextView textDesc;
     Intent intent;
+    Article ob;
 
     private String image_str ;
     private String textPublishedAt_str;
@@ -39,11 +41,12 @@ public class Description extends AppCompatActivity {
         textPublishedAt =findViewById(R.id.publishedAt_dec);
         intent=getIntent();
 
-
-        image_str =intent.getStringExtra("image");
-        textTitel_str=intent.getStringExtra("title");
-        textDescd_str=intent.getStringExtra("desc");
-        textPublishedAt_str =intent.getStringExtra("publishedAt");
+        Bundle bundle = intent.getExtras();
+        ob = (Article) bundle.getSerializable("Article");
+        image_str = ob.getUrlToImage();
+        textTitel_str = ob.getTitle();
+        textDescd_str = ob.getDescription();
+        textPublishedAt_str = ob.getPublishedAt();
 
         textPublishedAt.setText(textPublishedAt_str);
         textDesc.setText(textDescd_str);

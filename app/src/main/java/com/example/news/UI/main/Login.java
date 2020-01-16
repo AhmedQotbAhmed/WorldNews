@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -87,23 +88,33 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.Login_Button)
-        {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-        if(v.getId()==R.id.Sign_up_btn){
-            Intent intent = new Intent(this, SignUp.class);
-            startActivity(intent);
-        }
+        switch (v.getId()) {
 
-            if(v.getId()==R.id.fr_password) {
+
+            case R.id.Login_Button: {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+
+                break;
+            }
+            case R.id.Sign_up_btn: {
+                Intent intent = new Intent(this, SignUp.class);
+                startActivity(intent);
+
+                break;
+            }
+
+            case R.id.fr_password: {
                 Intent intent = new Intent(this, ForgotPassActivity.class);
                 startActivity(intent);
+
+                break;
             }
 
 
         }
+    }
+
 
 
 }
