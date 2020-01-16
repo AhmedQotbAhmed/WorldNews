@@ -23,7 +23,7 @@ public class SportFragment extends Fragment {
 
     RecyclerView recyclerView;
     NewsAdapter newsAdapter;
-    NewsApi api;
+
     public SportFragment() {
 
     }

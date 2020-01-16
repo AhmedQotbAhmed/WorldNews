@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="Home" android:id="@+id/home_mn" />
+    <item android:title="Baseness" android:id="@+id/baseness_mn" />
+    <item android:title="Sport" android:id="@+id/sport_mn"/>
+    <item android:title="Profile" android:id="@+id/profile_mn" />
+    <item android:title="SignOut" android:id="@+id/signOut_mn"/>
+</menu>

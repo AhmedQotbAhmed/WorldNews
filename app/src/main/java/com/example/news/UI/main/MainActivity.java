@@ -1,6 +1,9 @@
 package com.example.news.UI.main;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //toolbar
-        Toolbar mainTbr =  findViewById(R.id.main_toolbar);
+        Toolbar mainTbr = findViewById(R.id.main_toolbar);
         mainTbr.setTitle("EgyptNews");
         setSupportActionBar(mainTbr);
 
 
-        tabLayout= findViewById(R.id.tabLayout);
-        viewPager=findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
 
 
         tabLayout.addTab(tabLayout.newTab().setText("Sport"));
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        final FragmentAdapter adapter = new FragmentAdapter(this,getSupportFragmentManager(), tabLayout.getTabCount());
+        final FragmentAdapter adapter = new FragmentAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -62,11 +65,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
 
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.home_mn:
+//
+//                break;
+//
+//
+//        }
+//
+//        return true;
+//
+//
+//    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
 }
