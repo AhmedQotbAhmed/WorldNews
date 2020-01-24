@@ -1,6 +1,8 @@
 
 package com.example.news.pojo;
 
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,7 +12,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.Serializable;
 
-public class Article {
+public class Article implements Serializable {
 
     // بنحط الاينديكس اللي بجيب منها
     //1.... اللي جي ده كلو اول خطوه

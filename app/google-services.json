@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1037550133524",
+    "firebase_url": "https://fir-auth-98320.firebaseio.com",
+    "project_id": "fir-auth-98320",
+    "storage_bucket": "fir-auth-98320.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037550133524:android:639b00aa8fe2b43b326201",
+        "android_client_info": {
+          "package_name": "com.example.news"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037550133524-ntdch8hj6v5070nkfe8371ceqr46oona.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlCqP2qTS-rm75FhWMdWX2M1NUO25kxkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037550133524-ntdch8hj6v5070nkfe8371ceqr46oona.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

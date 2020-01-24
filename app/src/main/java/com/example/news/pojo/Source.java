@@ -1,10 +1,14 @@
 
 package com.example.news.pojo;
 
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Source {
+import java.io.Serializable;
+
+public class Source implements Serializable {
 
     @SerializedName("id")
     @Expose
