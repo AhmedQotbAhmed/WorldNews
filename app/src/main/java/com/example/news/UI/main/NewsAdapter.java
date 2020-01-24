@@ -55,7 +55,7 @@ import java.util.List;
 
         // بربط الداتا باليو اي بتاعي هنا
 
-        Article current= list.get(position);
+        final Article current= list.get(position);
         //saveData to Use it
 
         holder.more.setOnClickListener(new View.OnClickListener() {
@@ -64,12 +64,10 @@ import java.util.List;
                 if (v.getId() == R.id.more) {
 
                     Intent intent = new Intent(context, Description.class);
-                    intent.putExtra("Article",  list);
-                    intent.putExtra("Article",list.get(position).getTitle()); // implement Externalizable in your class to salve this error
-                    intent.putExtra("des",list.get(position).getDescription());
-                    intent.putExtra("image",list.get(position).getUrlToImage());
-                    intent.putExtra("pubAt",list.get(position).getPublishedAt());
-                    intent.putExtras(intent);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("Article", current);
+                    intent.putExtras(bundle);
 
 
                     context.startActivity(intent);
