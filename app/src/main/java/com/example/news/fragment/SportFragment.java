@@ -1,7 +1,11 @@
 package com.example.news.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -10,10 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.news.R;
+import com.example.news.UI.main.Login;
 import com.example.news.UI.main.NewsAdapter;
 import com.example.news.data.NewsApi;
 import com.example.news.data.RetrofitClient;
 import com.example.news.pojo.NewsResponse;
+import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,7 +29,7 @@ public class SportFragment extends Fragment {
 
     RecyclerView recyclerView;
     NewsAdapter newsAdapter;
-
+    private FirebaseAuth firebaseAuth;
     public SportFragment() {
 
     }
@@ -40,10 +46,35 @@ public class SportFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         getNews();
-
+        firebaseAuth= FirebaseAuth.getInstance();
+        setHasOptionsMenu(true);
 
 
         return view;
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+
+
+            case R.id.signOut_mn:
+                FirebaseAuth.getInstance().signOut();
+                getActivity().finish();
+                Intent intent=new Intent(getActivity(), Login.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void getNews() {

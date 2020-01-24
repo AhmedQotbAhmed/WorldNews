@@ -1,5 +1,6 @@
 package com.example.news.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,17 +16,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.news.R;
+import com.example.news.UI.main.Login;
 import com.example.news.UI.main.NewsAdapter;
 import com.example.news.data.NewsApi;
 import com.example.news.data.RetrofitClient;
 import com.example.news.pojo.NewsResponse;
+import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BusinessFragment extends Fragment {
-
+    private FirebaseAuth firebaseAuth;
     RecyclerView recyclerView;
     private  NewsAdapter newsAdapter;
 
@@ -39,16 +42,41 @@ public class BusinessFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view= inflater.inflate(R.layout.fragment_business, container, false);
-
+        firebaseAuth= FirebaseAuth.getInstance();
         recyclerView = view.findViewById(R.id.recycler_business);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+
         getNews();
+        setHasOptionsMenu(true);
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
 
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+
+
+            case R.id.signOut_mn:
+                FirebaseAuth.getInstance().signOut();
+                getActivity().finish();
+                Intent intent=new Intent(getActivity(), Login.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private void getNews() {
         NewsApi call = RetrofitClient.getService();

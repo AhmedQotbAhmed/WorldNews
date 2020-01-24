@@ -65,6 +65,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //                .requestIdToken(GoogleSignInOptions)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -106,7 +107,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 progHandler.post(new Runnable() {
                     @Override
                     public void run() {
-
                         myLoginView.setVisibility(View.VISIBLE);
 
                     }
@@ -116,7 +116,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void run() {
                         myProgress.setVisibility(View.INVISIBLE);
-
 
                     }
                 });
@@ -129,7 +128,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
     }
-
+    // Get Firebase signInUser
     private void signInUser() {
         String emailText = email.getText().toString();
         String passwordText = password.getText().toString();
@@ -171,7 +170,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         );
 
     }
-
+    // Get Firebase signInGoogle
     private void signInGoogle(){
         Intent intent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(intent,RC_SignIn);
@@ -204,8 +203,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), " is successful.",
+                            Toast.makeText(getApplicationContext(), " Authentication is successful.",
                                     Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            startActivity(intent);
                         }
                         else {
 
@@ -259,14 +260,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
                 if (user != null&& user.isAnonymous()) {
+
                     Log.e("signIn", user.getUid());
 
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
                 } else {
+                    Toast.makeText(getApplicationContext(), " signIn Please.",
+                            Toast.LENGTH_SHORT).show();
 
-                    Log.d("sign out", user.getUid());
                 }
             }
         };

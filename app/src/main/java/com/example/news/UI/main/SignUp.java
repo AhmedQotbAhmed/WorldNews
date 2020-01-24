@@ -62,50 +62,50 @@ SignUp.setOnClickListener(this);
         {
             password.setError(" Minimum length of Password is should be 8 ");
             password.requestFocus();
-            return;
+
         }
         if(emailText.isEmpty())
             {
             email.setError("Email is required");
             email.requestFocus();
-                return;
+
 
         }
         if(passwordText.isEmpty())
             {
             password.setError("Password is required");
             password.requestFocus();
-                return;
+
         }
         if(!passwordText.equals(rePasswordText))
             {
             repassword.setError("Password doesn't match");
             repassword.requestFocus();
-                return;
+
         }
         if(LnameText.isEmpty())
             {
             Lname.setError("Lname is required");
             Lname.requestFocus();
-                return;
+
         }
         if(FnameText.isEmpty())
              {
             Fname.setError("Fname is required");
             Fname.requestFocus();
-                 return;
+
         }
         if(mobile_Text.isEmpty())
             {
             mobile_num.setError("mobile is required");
             mobile_num.requestFocus();
-                return;
+
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(emailText).matches())
             {
                 email.setError(" please Enter a valid email");
                 email.requestFocus();
-                return;
+
 
         }
         mAuth.createUserWithEmailAndPassword(emailText,passwordText).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
