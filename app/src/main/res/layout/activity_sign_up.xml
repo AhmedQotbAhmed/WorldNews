@@ -29,11 +29,12 @@
         android:id="@+id/create_ac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Create an account "
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="bold"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -52,6 +53,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -74,6 +76,7 @@
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -97,6 +100,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_signUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -120,6 +124,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass_signUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -143,6 +148,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/repass_signUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -150,21 +156,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 <!--                                    -->
-    <Spinner
-        android:id="@+id/spinner_Country"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_rec_password"
-        app:layout_constraintWidth_percent=".15"
-        tools:ignore="MissingConstraints"/>
-
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -174,13 +165,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="Mobile phone number"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/spinner_Country"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_rec_password"
         app:layout_constraintWidth_percent=".75"
         tools:ignore="MissingConstraints">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mobile_signUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
@@ -193,12 +186,11 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:layout_marginTop="20dp"
         android:id="@+id/signUp_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="Continue"
         android:layout_gravity="center"
-    />
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="Sign up" />
 </LinearLayout>
