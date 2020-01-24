@@ -13,11 +13,11 @@ import com.example.news.pojo.Article;
 import com.squareup.picasso.Picasso;
 
 public class Description extends AppCompatActivity {
-    ImageView imageView;
-    TextView textTitel;
-    TextView textPublishedAt;
-    TextView textDesc;
-    Intent ob;
+    private ImageView imageView;
+    private TextView textTitel;
+    private  TextView textPublishedAt;
+    private  TextView textDesc;
+
 
 
     private String image_str ;
