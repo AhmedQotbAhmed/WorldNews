@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".UI.main.ForgotPassActivity"></activity>
-        <activity android:name=".UI.main.Description" />
+        <activity android:name=".UI.main.DescriptionActivity" />
         <activity android:name=".UI.main.SignUp" />
         <activity android:name=".UI.main.MainActivity" />
         <activity android:name=".UI.main.Login">

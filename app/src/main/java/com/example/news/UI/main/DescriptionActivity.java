@@ -12,7 +12,7 @@ import com.example.news.R;
 import com.example.news.pojo.Article;
 import com.squareup.picasso.Picasso;
 
-public class Description extends AppCompatActivity {
+public class DescriptionActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView textTitel;
     private  TextView textPublishedAt;
@@ -32,7 +32,7 @@ public class Description extends AppCompatActivity {
 
 //    toolbar
         Toolbar mainTbr =  findViewById(R.id.des_toolbar);
-        mainTbr.setTitle("Description");
+        mainTbr.setTitle("DescriptionActivity");
         setSupportActionBar(mainTbr);
 
         imageView=findViewById(R.id.image_dec);

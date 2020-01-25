@@ -186,7 +186,7 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/signUp_Button"
+        android:id="@+id/forgotpass_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

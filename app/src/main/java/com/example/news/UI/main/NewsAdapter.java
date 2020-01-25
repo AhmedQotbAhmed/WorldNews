@@ -3,7 +3,6 @@ package com.example.news.UI.main;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,6 @@ import com.example.news.R;
 import com.example.news.pojo.Article;
 import com.squareup.picasso.Picasso;
 
-import java.io.Externalizable;
-import java.io.Serializable;
 import java.util.List;
 // PICASSO FOR DISPLAY image
 
@@ -63,7 +60,7 @@ import java.util.List;
             public void onClick(View v) {
                 if (v.getId() == R.id.more) {
 
-                    Intent intent = new Intent(context, Description.class);
+                    Intent intent = new Intent(context, DescriptionActivity.class);
 
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("Article", current);

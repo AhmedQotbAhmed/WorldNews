@@ -13,16 +13,20 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.news.R;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,7 +50,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private MaterialButton signUp_var;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleSignInClient mGoogleApiClient;
     private static  final int RC_SignIn=0;
     private EditText password, email;
 
@@ -65,17 +69,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //                .requestIdToken(GoogleSignInOptions)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("1037550133524-ntdch8hj6v5070nkfe8371ceqr46oona.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
-                    @Override
-                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-                    }
-                }).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
+        mGoogleApiClient   = GoogleSignIn.getClient(this, gso);
 
 
         password = findViewById(R.id.password_login);
@@ -136,18 +134,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         if (passwordText.length() < 8) {
             password.setError(" Minimum length of Password is should be 8 ");
             password.requestFocus();
-            return;
+
         }
         if (emailText.isEmpty()) {
             email.setError("Email is required");
             email.requestFocus();
-            return;
+
 
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
             email.setError(" please Enter a valid email");
             email.requestFocus();
-            return;
+
         }
 
         mAuth.signInWithEmailAndPassword(emailText, passwordText).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -157,6 +155,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                             Intent intent = new Intent(Login.this, MainActivity.class);
                             startActivity(intent);
+                            finish();
 
                         }
 
@@ -172,8 +171,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
     // Get Firebase signInGoogle
     private void signInGoogle(){
-        Intent intent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(intent,RC_SignIn);
+        Intent signInIntent = mGoogleApiClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SignIn);
+
 
     }
 
@@ -188,6 +188,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     // Google Sign In was successful, authenticate with Firebase
                     GoogleSignInAccount account = task.getSignInAccount();
                     firebaseAuthWithGoogle(account);
+
+
                 }
          else {
 
@@ -195,6 +197,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
     }
     }
+
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -207,6 +211,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                     Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Login.this, MainActivity.class);
                             startActivity(intent);
+
+                            finish();
                         }
                         else {
 
@@ -261,14 +267,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if (user != null&& user.isAnonymous()) {
+                if (user != null) {
 
                     Log.e("signIn", user.getUid());
-
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), " signIn Please.",
+                    Toast.makeText(getApplicationContext(), " SignIn Please.",
                             Toast.LENGTH_SHORT).show();
 
                 }
