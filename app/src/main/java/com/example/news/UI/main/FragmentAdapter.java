@@ -12,7 +12,7 @@ import com.example.news.fragment.SportFragment;
 
 public class FragmentAdapter extends FragmentPagerAdapter {
     private Context myContext;
-    int totalTabs;
+    private int totalTabs;
 
     public FragmentAdapter(Context context, FragmentManager fm, int totalTabs) {
         super(fm);
