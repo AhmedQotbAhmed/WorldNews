@@ -129,9 +129,6 @@ SignUp.setOnClickListener(this);
         });
 
 
-
-
-
     }
 
     @Override

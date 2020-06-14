@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
     private void getNews() {
         NewsApi call = RetrofitClient.getService();
         // call function return dataClass
-        call.getNews("eg","science","c4652d58322344a783a6cea9e37e0707").enqueue(new Callback<NewsResponse>() {
+        call.getNews("US","science","211e7a892d3849c5a9b4f09704ae46d8").enqueue(new Callback<NewsResponse>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 newsAdapter = new NewsAdapter(response.body().getArticles());

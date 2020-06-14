@@ -17,7 +17,6 @@ public class RetrofitClient {
                     .baseUrl("https://newsapi.org/") //baseUrl
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-
         }
         return retrofit.create(NewsApi.class);
 

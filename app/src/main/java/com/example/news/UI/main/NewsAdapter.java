@@ -97,8 +97,8 @@ import java.util.List;
     class NewsHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView img;
-          Button more;
-          RelativeLayout container;
+        Button more;
+        RelativeLayout container;
 
 
         public NewsHolder(@NonNull View itemView) {
