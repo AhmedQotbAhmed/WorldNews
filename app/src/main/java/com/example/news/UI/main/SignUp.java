@@ -41,7 +41,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         repassword=findViewById(R.id.repass_signUp);
         mobile_num=findViewById(R.id.mobile_signUp);
         SignUp=findViewById(R.id.forgotpass_Button);
-SignUp.setOnClickListener(this);
+        SignUp.setOnClickListener(this);
 
 
     }
@@ -55,12 +55,13 @@ SignUp.setOnClickListener(this);
         String LnameText= Lname.getText().toString();
         String rePasswordText =repassword.getText().toString();
         String mobile_Text= mobile_num.getText().toString();
-
+        boolean done= true;
 
         if(passwordText.length()<8)
         {
             password.setError(" Minimum length of Password is should be 8 ");
             password.requestFocus();
+            done= false;
 
         }
         if(emailText.isEmpty())
@@ -68,36 +69,42 @@ SignUp.setOnClickListener(this);
             email.setError("Email is required");
             email.requestFocus();
 
+                done= false;
 
         }
         if(passwordText.isEmpty())
             {
             password.setError("Password is required");
             password.requestFocus();
+                done= false;
 
         }
         if(!passwordText.equals(rePasswordText))
             {
             repassword.setError("Password doesn't match");
             repassword.requestFocus();
+                done= false;
 
         }
         if(LnameText.isEmpty())
             {
             Lname.setError("Lname is required");
             Lname.requestFocus();
+                done= false;
 
         }
         if(FnameText.isEmpty())
              {
             Fname.setError("Fname is required");
             Fname.requestFocus();
+                 done= false;
 
         }
         if(mobile_Text.isEmpty())
             {
             mobile_num.setError("mobile is required");
             mobile_num.requestFocus();
+                done= false;
 
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(emailText).matches())
@@ -105,30 +112,31 @@ SignUp.setOnClickListener(this);
                 email.setError(" please Enter a valid email");
                 email.requestFocus();
 
+                done= false;
 
         }
-        mAuth.createUserWithEmailAndPassword(emailText,passwordText).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"SignUp Successfully",
-                            Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SignUp.this, Login.class);
-                    startActivity(intent);
+        if (done) {
+            mAuth.createUserWithEmailAndPassword(emailText, passwordText).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "SignUp Successfully",
+                                Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(SignUp.this, Login.class);
+                        startActivity(intent);
 
 
+                    } else {
+                        Log.e(" Authentication failed"
+                                , "createUserWithEmail:failure", task.getException());
+                        Toast.makeText(getApplicationContext(), "Authentication failed try again.",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    Log.e(" Authentication failed"
-                            , "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(getApplicationContext(), "Authentication failed try again.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
 
-        });
+            });
 
-
+        }
     }
 
     @Override

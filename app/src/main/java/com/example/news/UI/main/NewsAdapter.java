@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -82,7 +83,7 @@ import java.util.List;
 //        Animation
         holder.img.setAnimation(AnimationUtils.loadAnimation(context,R.anim.rc_transitiion_animation));
         holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.content_transition_animation));
-        holder.more.setAnimation(AnimationUtils.loadAnimation(context,R.anim.rc_transitiion_animation));
+
 
     }
 
@@ -97,7 +98,7 @@ import java.util.List;
     class NewsHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView img;
-        Button more;
+        LinearLayout more;
         RelativeLayout container;
 
 

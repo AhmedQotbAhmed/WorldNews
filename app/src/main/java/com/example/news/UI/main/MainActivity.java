@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 //toolbar
         Toolbar mainTbr = findViewById(R.id.main_toolbar);
-        mainTbr.setTitle("EgyptNews");
+        mainTbr.setTitle("News");
         setSupportActionBar(mainTbr);
 
         tabLayout = findViewById(R.id.tabLayout);
