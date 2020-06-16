@@ -1,5 +1,6 @@
 package com.example.news.UI.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,10 +40,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
-    private Handler progHandler = new Handler();
 
-    private int count = 0;
-    private LinearLayout myProgress;
+
     private ConstraintLayout myLoginView;
     private ImageView btn_google, btn_facebook;
     private Button btn_login;
@@ -55,12 +54,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText password, email;
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar loginTbr = findViewById(R.id.login_toolbar);
-        loginTbr.setTitle("login");
+        loginTbr.setTitle("Login");
+        loginTbr.setTitleTextColor(R.color.colorPrimaryDark);
         setSupportActionBar(loginTbr);
 
 
@@ -82,7 +83,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btn_frgPass = findViewById(R.id.fr_password);
         signUp_var = findViewById(R.id.Sign_up_btn);
         myLoginView = findViewById(R.id.loginView);
-        myProgress = findViewById(R.id.progress);
+
         btn_google = findViewById(R.id.icon_google);
         btn_facebook = findViewById(R.id.icon_facebook);
         btn_login = findViewById(R.id.Login_Button);
@@ -94,33 +95,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         signUp_var.setOnClickListener(this);
 
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                while (count < 30) {
-                    count += 1;
-                    android.os.SystemClock.sleep(50);
-                }
-                progHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        myLoginView.setVisibility(View.VISIBLE);
-
-                    }
-                });
-
-                progHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        myProgress.setVisibility(View.INVISIBLE);
-
-                    }
-                });
-
-
-            }
-        }).start();
 
         initAuthStateListene ();
 
@@ -130,43 +104,39 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private void signInUser() {
         String emailText = email.getText().toString();
         String passwordText = password.getText().toString();
+        if (!emailText.isEmpty()&&!passwordText.isEmpty()) {
+            if (passwordText.length() < 8) {
+                password.setError(" Minimum length of Password is should be 8 ");
+                password.requestFocus();
 
-        if (passwordText.length() < 8) {
-            password.setError(" Minimum length of Password is should be 8 ");
-            password.requestFocus();
+            }
+            if (emailText.isEmpty()) {
+                email.setError("Email is required");
+                email.requestFocus();
+            }
+            if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+                email.setError(" please Enter a valid email");
+                email.requestFocus();
+            }
 
-        }
-        if (emailText.isEmpty()) {
-            email.setError("Email is required");
-            email.requestFocus();
+            mAuth.signInWithEmailAndPassword(emailText, passwordText).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
+                                Intent intent = new Intent(Login.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
 
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-            email.setError(" please Enter a valid email");
-            email.requestFocus();
-
-        }
-
-        mAuth.signInWithEmailAndPassword(emailText, passwordText).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-                            Intent intent = new Intent(Login.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Email or password incorrect.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
 
                         }
-
-                        else {
-                            Toast.makeText(getApplicationContext(), "Email or password incorrect.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
                     }
-                }
-        );
+            );
+        }
 
     }
     // Get Firebase signInGoogle
