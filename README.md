@@ -1,4 +1,15 @@
 # WorldNews
+Apr 2020 – Present
+
+Project descriptionNotePad app Provides Some features like add, edit, search, and delete on
+the notes.
+Technology Used:
+● Room
+● Fragment
+● RecyclerView
+● Material Design
+● MVVM
+
 Application video:
 https://vimeo.com/431159037
 
